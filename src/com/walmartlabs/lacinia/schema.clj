@@ -700,9 +700,7 @@
                          :let [keyword-value (as-keyword resolved-value)]
 
                          (not (possible-values keyword-value))
-                         (throw (ex-info "Field resolver returned an undefined enum value."
-                                         {:resolved-value resolved-value
-                                          :enum-values possible-values}))
+                         (selector-error selector-context (error "Field resolver returned an undefined enum value."))
 
                          :else
                          (selector (assoc selector-context :resolved-value keyword-value)))))
